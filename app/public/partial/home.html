@@ -1,0 +1,114 @@
+
+<!--==== Nav Bar and Header ====-->
+<header class="clearfix">
+    <h1><strong>Eric</strong></h1>
+    <h1 id="val">Val</h1>
+    <h2 id="official">Official Website</h2>
+    <nav >
+        <ul>
+            <li><a href="/#/">Home</a></li>
+            <li><a href="/#/bio">Bio</a></li>
+            <li class="dropdown">Gallery
+                <ul class="dropdown-content"  style="list-style-type:none">
+                    <li ng-click="view = 'images'" class="link">Images</li>
+                    <li ng-click="view = 'videos'" class="link">Videos</li>
+                </ul>
+
+            </li>
+            <li><a href="/#/contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!--==== Home Page ====-->
+
+<main ng-class="{'static': data.imagesActive || data.videosActive}">
+    <section id="updates">
+        <h2>Updates:</h2>
+        <ul>
+            <li>New single <i>Beautiful Lie</i> is out now!</li>
+            <li>Check out the new music video below! </li>
+            <li>Eric will be performing next week!<br> Check out his upcoming shows.</li>
+        </ul>
+    </section>
+
+    <!--==== Music Player ====-->
+    <section id="music">
+        <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/264471992&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;buying=false">
+        </iframe>
+    </section>
+
+    <!--==== Upcoming Shows ====-->
+
+    <section id="shows">
+        <h2>Upcoming Shows:</h2>
+        <ul>
+            <li><strong>The Spartan Pub</strong> 11/7/2016</li>
+            <li><strong>Riepstine's Pub</strong> 11/21/2016</li>
+            <li><strong>Hull's Landing</strong> 12/4/2016</li>
+            <li><strong>The Mill Tavern Bar & Restaurant</strong> 12/12/2016</li>
+        </ul>
+    </section>
+
+    <!--==== Google Map ====-->
+    <section id="allMap">
+    <h2>Map To The Shows</h2>
+        <div google-map></div>
+    </section>
+
+    <!--==== Video on Home Page ====-->
+    <article>
+        <iframe width="640" height="360"
+                src="https://www.youtube.com/embed/SjGZoALjiLQ">
+        </iframe>
+    </article>
+
+
+    <!-- Image Modal -->
+    <div class="modalize" ng-show="view == 'images'">
+
+        <div class="thumbWrapper">
+            <div class="glyphicon glyphicon-remove-circle close" ng-click="view = false"></div>
+
+            <div class="test" ng-repeat="image in images">
+                <img ng-src="{{ image }}" ng-click="showImage(image)" class="thumbnail">
+            </div>
+        </div>
+
+        <div class="preview">
+
+            <!--==== Main Image ====-->
+            <div class="viewImage">
+                <img class="mainImage" ng-src="{{ image }}">
+            </div>
+
+        </div>
+
+    </div>
+    <!-- End Image Modal -->
+    
+    <!-- Video Modal -->
+    <div class="modalize" ng-show="view == 'videos'">
+
+        <div class="thumbWrapper">
+            <div class="glyphicon glyphicon-remove-circle close" ng-click="view = false"></div>
+
+            <div class="test" ng-repeat="video in videos">
+                <img ng-src="{{ video.thumb }}" ng-click="showVideo(video)" class="thumbnail">
+            </div>
+        </div>
+
+        <div class="preview">
+
+            <!--==== Main Image ====-->
+            <div class="viewVideo">
+                <iframe ng-src="{{ video | trustAsResourceUrl }}" sandbox="allow-scripts allow-same-origin">
+                </iframe>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- End Video Modal -->
+
+</main>
